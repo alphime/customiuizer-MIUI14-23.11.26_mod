@@ -1,0 +1,32 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.4'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal {
+            content {
+                includeGroup("io.github.libxposed")
+            }
+        }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        mavenCentral()
+        google()
+    }
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.buildDir
+}
