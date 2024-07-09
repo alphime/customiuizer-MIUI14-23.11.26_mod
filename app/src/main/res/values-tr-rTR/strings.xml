@@ -76,6 +76,8 @@
     <string name="system_cc_hidedate_title">Tarihi Gizle</string>
     <string name="system_clock_show_ampm_title">AM|PM Göster</string>
     <string name="system_clock_time_format_title">24 saatlik zaman biçimi</string>
+    <string name="array_12hour_format">12 saatlik zaman biçim</string>
+    <string name="array_24hour_format">24 saatlik zaman biçim</string>
     <string name="system_clock_leadingzero_title">Sıfırdan saate kadar göster</string>
     <string name="system_clock_customformat_enable_title">Özel biçimi etkinleştir</string>
     <string name="system_clock_customformat_setting_title">Biçimi ayarla</string>

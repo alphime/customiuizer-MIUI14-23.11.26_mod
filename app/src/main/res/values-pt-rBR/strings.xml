@@ -90,6 +90,8 @@
     <string name="system_statusbar_clock_chip_orientation_vertical_title">Desenhe o gradiente de cima para baixo</string>
     <string name="system_statusbar_clock_chip_verticalpadding_title">Preenchimento vertical</string>
     <string name="system_clock_time_format_title">Formato 24 horas</string>
+    <string name="array_12hour_format">Formato 12 horas</string>
+    <string name="array_24hour_format">Formato 24 horas</string>
     <string name="system_clock_leadingzero_title">Mostrar zero à esquerda para horas</string>
     <string name="system_clock_customformat_enable_title">Ativar formato personalizado</string>
     <string name="system_clock_customformat_setting_title">Definir formato</string>

@@ -90,6 +90,8 @@
     <string name="system_statusbar_clock_chip_orientation_vertical_title">Настроить градиент сверху вниз</string>
     <string name="system_statusbar_clock_chip_verticalpadding_title">Вертикальный отступ</string>
     <string name="system_clock_time_format_title">24-часовой формат</string>
+    <string name="array_12hour_format">12-часовой формат</string>
+    <string name="array_24hour_format">24-часовой формат</string>
     <string name="system_clock_leadingzero_title">Показать начало от нуля до часов</string>
     <string name="system_clock_customformat_enable_title">Включить собственный формат</string>
     <string name="system_clock_customformat_setting_title">Задать формат</string>

@@ -70,6 +70,8 @@
     <string name="system_clockseconds_title">顯示秒</string>
     <string name="system_clock_show_ampm_title">顯示時段</string>
     <string name="system_clock_time_format_title">24小時制</string>
+    <string name="array_12hour_format">12小時制</string>
+    <string name="array_24hour_format">24小時制</string>
     <string name="system_clock_leadingzero_title">小時補0</string>
     <string name="system_clock_customformat_enable_title">開啟自定義格式</string>
     <string name="system_clock_customformat_setting_title">設定格式</string>

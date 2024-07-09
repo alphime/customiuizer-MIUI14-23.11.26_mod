@@ -90,6 +90,8 @@
     <string name="system_statusbar_clock_chip_orientation_vertical_title">Độ dốc dọc</string>
     <string name="system_statusbar_clock_chip_verticalpadding_title">Lề dọc</string>
     <string name="system_clock_time_format_title">Sử dụng định dạng 24 giờ</string>
+    <string name="array_12hour_format">Sử dụng định dạng 12 giờ</string>
+    <string name="array_24hour_format">Sử dụng định dạng 24 giờ</string>
     <string name="system_clock_leadingzero_title">Hiển thị dưới dạng thời gian bắt đầu từ số không</string>
     <string name="system_clock_customformat_enable_title">Bật định dạng tuỳ chỉnh</string>
     <string name="system_clock_customformat_setting_title">Thiết lập định dạng</string>

@@ -91,6 +91,8 @@
     <string name="system_statusbar_clock_chip_orientation_vertical_title">Překreslit sklon shora dolů</string>
     <string name="system_statusbar_clock_chip_verticalpadding_title">Svislá výplň</string>
     <string name="system_clock_time_format_title">24-hodinový formát</string>
+    <string name="array_12hour_format">12-hodinový formát</string>
+    <string name="array_24hour_format">24-hodinový formát</string>
     <string name="system_clock_leadingzero_title">Zobrazit nulu před hodinami</string>
     <string name="system_clock_customformat_enable_title">Povolit vlastní formát</string>
     <string name="system_clock_customformat_setting_title">Nastavit formát</string>

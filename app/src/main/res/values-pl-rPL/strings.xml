@@ -87,6 +87,8 @@
     <string name="system_statusbar_clock_chip_orientation_vertical_title">Narysuj gradient od góry do dołu</string>
     <string name="system_statusbar_clock_chip_verticalpadding_title">Pionowe wypełnienie</string>
     <string name="system_clock_time_format_title">24-godzinny format czasu</string>
+    <string name="array_12hour_format">12-godzinny format czasu</string>
+    <string name="array_24hour_format">24-godzinny format czasu</string>
     <string name="system_clock_leadingzero_title">Pokaż prowadzące zera do godzin</string>
     <string name="system_clock_customformat_enable_title">Włącz niestandardowy format</string>
     <string name="system_clock_customformat_setting_title">Ustaw format</string>

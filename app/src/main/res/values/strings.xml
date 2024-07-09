@@ -1092,6 +1092,8 @@
     <string name="time_8h">8 hours</string>
     <string name="time_10h">10 hours</string>
     <string name="time_12h">12 hours</string>
+    <string name="array_12hour_format">12-hour time format</string>
+    <string name="array_24hour_format">24-hour time format</string>
     <string name="time_forever" translatable="false">∞</string>
 
     <string name="white_color">White</string>

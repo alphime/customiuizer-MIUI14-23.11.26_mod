@@ -90,6 +90,8 @@
     <string name="system_statusbar_clock_chip_orientation_vertical_title">上から下へグラデーションを描画する</string>
     <string name="system_statusbar_clock_chip_verticalpadding_title">垂直方向のパディング</string>
     <string name="system_clock_time_format_title">24時間形式で表示</string>
+    <string name="array_12hour_format">12時間形式で表示</string>
+    <string name="array_24hour_format">24時間形式で表示</string>
     <string name="system_clock_leadingzero_title">ゼロから始まる時刻で表示</string>
     <string name="system_clock_customformat_enable_title">カスタム形式を有効化</string>
     <string name="system_clock_customformat_setting_title">形式を設定</string>
