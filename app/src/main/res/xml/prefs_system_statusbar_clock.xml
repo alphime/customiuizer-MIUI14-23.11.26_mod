@@ -162,7 +162,6 @@
 		miuizer:format="%s dp" />
 
 	<name.monwf.customiuizer.prefs.DropDownPreferenceEx
-		android:iconSpaceReserved="false"
 		android:key="pref_key_system_statusbar_clock_24hour_format"
 		android:title="@string/system_clock_time_format_title"
 		android:entryValues="@array/statusbar_clock_24hour_val"

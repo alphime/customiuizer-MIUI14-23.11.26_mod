@@ -58,7 +58,7 @@ public class DropDownPreferenceEx extends DropDownPreference implements Preferen
 		TextView summary = finalView.findViewById(android.R.id.summary);
 		TextView valSummary = finalView.findViewById(android.R.id.hint);
 
-		summary.setVisibility(valueAsSummary || getSummary() == null || getSummary().equals("") ? View.GONE : View.VISIBLE);
+		summary.setVisibility(valueAsSummary || getSummary() == null || getSummary().toString().isEmpty() ? View.GONE : View.VISIBLE);
 		valSummary.setVisibility(valueAsSummary ? View.VISIBLE : View.GONE);
 		valSummary.setText(valueAsSummary ? sValue : "");
 		if (valueAsSummary) valSummary.setTextColor(Helpers.isNightMode(getContext()) ? secondary : primary);
@@ -68,8 +68,8 @@ public class DropDownPreferenceEx extends DropDownPreference implements Preferen
 		if (highlight) {
 			Helpers.applySearchItemHighlight(finalView);
 		}
-		int hrzPadding = (indentLevel + 1) * childpadding;
-		finalView.setPadding(hrzPadding, 0, childpadding, 0);
+		int hrzPadding = (indentLevel) * childpadding + (int) (res.getDisplayMetrics().density + 0.5f);
+		finalView.setPadding(hrzPadding, 0, (indentLevel) * childpadding, 0);
 	}
 
 	@Override
