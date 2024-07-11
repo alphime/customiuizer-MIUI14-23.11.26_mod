@@ -1,9 +1,11 @@
 package name.monwf.customiuizer.subs;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
 
@@ -14,6 +16,8 @@ import name.monwf.customiuizer.utils.Helpers;
 
 public class Various_HiddenFeatures extends SubFragment {
 
+	private static final String TEXT_AOSP = "AOSP";
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -21,7 +25,7 @@ public class Various_HiddenFeatures extends SubFragment {
 		final AppCompatActivity act = (AppCompatActivity) getActivity();
 
 		PreferenceEx aosp = findPreference("pref_key_various_batteryoptimization");
-		aosp.setCustomSummary("AOSP");
+		aosp.setCustomSummary(TEXT_AOSP);
 		aosp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
@@ -40,7 +44,7 @@ public class Various_HiddenFeatures extends SubFragment {
 		});
 
 		aosp = findPreference("pref_key_various_runningservices");
-		aosp.setCustomSummary("AOSP");
+		aosp.setCustomSummary(TEXT_AOSP);
 		aosp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
@@ -56,12 +60,24 @@ public class Various_HiddenFeatures extends SubFragment {
 		});
 
 		aosp = findPreference("pref_key_various_aospnotif");
-		aosp.setCustomSummary("AOSP");
+		aosp.setCustomSummary(TEXT_AOSP);
 		aosp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-			@Override
+			@SuppressLint("SuspiciousIndentation")
+            @Override
 			public boolean onPreferenceClick(Preference preference) {
 				if (!Helpers.launchActivity(act, "com.android.settings", "com.android.settings.Settings$AppAndNotificationDashboardActivity", true))
-				Helpers.launchActivity(act, "com.android.settings", "com.android.settings.Settings$ConfigureNotificationSettingsActivity");
+					Helpers.launchActivity(act, "com.android.settings", "com.android.settings.Settings$ConfigureNotificationSettingsActivity");
+				return true;
+			}
+		});
+		aosp = findPreference("pref_key_various_aospsim");
+		aosp.setCustomSummary(TEXT_AOSP);
+		aosp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(@NonNull Preference preference) {
+				if (!Helpers.launchActivity(act, "com.android.settings", "com.android.settings.Settings$MobileNetworkListActivity", true)) {
+					Helpers.launchActivity(act, "com.android.settings", "com.android.settings.Settings$MobileNetworkActivity");
+				}
 				return true;
 			}
 		});

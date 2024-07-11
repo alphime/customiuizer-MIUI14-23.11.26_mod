@@ -573,6 +573,11 @@ public class MainModule extends XposedModule {
             if (mPrefs.getBoolean("system_wifipassword")) {
                 System.ViewWifiPasswordHook(lpparam);
             }
+            try {
+                System.HookWifiCallingPerferenceController(lpparam);
+            } catch (Exception e) {
+                log("HookWifiCallingPerferenceController", e);
+            }
         }
 
         if (pkg.startsWith("com.google.android.inputmethod")) {

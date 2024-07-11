@@ -31,4 +31,8 @@
 		app:isPreferenceVisible="false"
 		android:title="@string/various_aospnotiflog_title" />
 
+	<name.monwf.customiuizer.prefs.PreferenceEx
+		app:key="pref_key_various_aospsim"
+		android:title="移动网络设置" />
+
 </PreferenceScreen>

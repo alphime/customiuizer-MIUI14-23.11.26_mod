@@ -62,6 +62,7 @@ import android.os.UserHandle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.PhoneStateListener;
+import android.telephony.SubscriptionManager;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
@@ -4864,5 +4865,15 @@ public class System {
 
     public static void Disable72hStrongAuthHook(SystemServerLoadedParam lpparam) {
         ModuleHelper.findAndHookMethod("com.android.server.locksettings.LockSettingsStrongAuth", lpparam.getClassLoader(), "rescheduleStrongAuthTimeoutAlarm", long.class, int.class, HookerClassHelper.DO_NOTHING);
+    }
+
+    public static void HookWifiCallingPerferenceController(PackageLoadedParam lpparam) {
+        ModuleHelper.findAndHookMethod("com.android.settings.network.telephony.WifiCallingPreferenceController", lpparam.getClassLoader(), "getAvailabilityStatus", int.class, new MethodHook(){
+            @Override
+            protected void before(BeforeHookCallback param) throws Throwable {
+                int index = (int) param.getArgs()[0];
+                param.returnAndSkip(SubscriptionManager.isValidSubscriptionId(index) ? 0 : 3);
+            }
+        });
     }
 }
