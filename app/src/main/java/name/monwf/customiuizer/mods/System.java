@@ -1103,19 +1103,8 @@ public class System {
                         } catch (Throwable e) {
                             //
                         }
-                        boolean showAmpm = MainModule.mPrefs.getBoolean("system_statusbar_clock_show_ampm") || type24 == 0;
+                        boolean showAmpm = MainModule.mPrefs.getBoolean("system_statusbar_clock_show_ampm");
                         boolean hourIn2d = MainModule.mPrefs.getBoolean("system_statusbar_clock_leadingzero");
-                        String fmt;
-                        if (showAmpm) {
-                            fmt = "fmt_time_12hour_minute_pm";
-                        } else {
-                            fmt = "fmt_time_12hour_minute";
-                        }
-                        int fmtResId = mContext.getResources().getIdentifier(fmt, "string", "com.android.systemui");
-                        timeFmt = mContext.getString(fmtResId);
-                        if (showSeconds) {
-                            timeFmt = timeFmt.replaceFirst(":mm", ":mm:ss");
-                        }
                         String hourStr;
                         switch (type24) {
                             case 1:
@@ -1126,12 +1115,29 @@ public class System {
                                 break;
                             default: {
                                 try {
-                                    hourStr = getIs24(clock) ? "H" : "h";
-                                    ;          // default
+                                    if (getIs24(clock)) {
+                                        hourStr = "H";
+                                        showAmpm = false;
+                                    } else {
+                                        hourStr = "h";
+                                        showAmpm = true;
+                                    }
+                                    // default
                                 } catch (Exception e) {
                                     throw new RuntimeException("ClassNotFound MiuiStatusBarClockController.getIs24", e);
                                 }
                             }
+                        }
+                        String fmt;
+                        if (showAmpm) {
+                            fmt = "fmt_time_12hour_minute_pm";
+                        } else {
+                            fmt = "fmt_time_12hour_minute";
+                        }
+                        int fmtResId = mContext.getResources().getIdentifier(fmt, "string", "com.android.systemui");
+                        timeFmt = mContext.getString(fmtResId);
+                        if (showSeconds) {
+                            timeFmt = timeFmt.replaceFirst(":mm", ":mm:ss");
                         }
                         if (hourIn2d) {
                             hourStr = hourStr + hourStr;
