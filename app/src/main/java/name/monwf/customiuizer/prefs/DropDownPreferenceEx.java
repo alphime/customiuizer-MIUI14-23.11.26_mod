@@ -3,14 +3,18 @@ package name.monwf.customiuizer.prefs;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import androidx.preference.DropDownPreference;
-import androidx.preference.PreferenceViewHolder;
-
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.preference.DropDownPreference;
+import androidx.preference.PreferenceViewHolder;
 
 import name.monwf.customiuizer.R;
 import name.monwf.customiuizer.utils.Helpers;
@@ -61,15 +65,24 @@ public class DropDownPreferenceEx extends DropDownPreference implements Preferen
 		summary.setVisibility(valueAsSummary || getSummary() == null || getSummary().toString().isEmpty() ? View.GONE : View.VISIBLE);
 		valSummary.setVisibility(valueAsSummary ? View.VISIBLE : View.GONE);
 		valSummary.setText(valueAsSummary ? sValue : "");
-		if (valueAsSummary) valSummary.setTextColor(Helpers.isNightMode(getContext()) ? secondary : primary);
-		title.setTextColor(isEnabled() ? primary : secondary);
+//		if (valueAsSummary) valSummary.setTextColor(Helpers.isNightMode(getContext()) ? secondary : primary);
+//		title.setTextColor(isEnabled() ? primary : secondary);
 		title.setText(getTitle() + (unsupported ? " ⨯" : (dynamic ? " ⟲" : "")));
 		if (newmod) Helpers.applyNewMod(title);
 		if (highlight) {
 			Helpers.applySearchItemHighlight(finalView);
 		}
 		int hrzPadding = (indentLevel) * childpadding + (int) (res.getDisplayMetrics().density + 0.5f);
-		finalView.setPadding(hrzPadding, 0, (indentLevel) * childpadding, 0);
+		finalView.setPadding(hrzPadding, 0, (indentLevel + 1) * childpadding, 0);
+		ViewGroup vg = (ViewGroup) finalView;
+		for (int i = 0; i < vg.getChildCount(); i++) {
+			View v = vg.getChildAt(i);
+			if (v.getClass() == LinearLayout.class) {
+				v.setBackground(null);
+				Log.w("TAG", "DropDownPreference: remove excess Background of LinearLayout: " + v + " " + i + "," + vg.getChildCount());
+				break;
+			}
+		}
 	}
 
 	@Override
@@ -86,11 +99,13 @@ public class DropDownPreferenceEx extends DropDownPreference implements Preferen
 			valSummary = new TextView(getContext());
 			valSummary.setTextSize(TypedValue.COMPLEX_UNIT_PX, summary.getTextSize());
 			valSummary.setTextColor(summary.getCurrentTextColor());
-			valSummary.setPadding(summary.getPaddingLeft(), summary.getPaddingTop(), res.getDimensionPixelSize(R.dimen.preference_summary_padding_right), summary.getPaddingBottom());
+			valSummary.setPadding(0, 0, res.getDimensionPixelSize(R.dimen.preference_summary_padding_right), 0);
 			valSummary.setId(android.R.id.hint);
+			FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+			lp.gravity = Gravity.CENTER | Gravity.END;
+			valSummary.setLayoutParams(lp);
 			((ViewGroup) view.itemView).addView(valSummary, 2);
 		}
-
 		getView(view.itemView);
 	}
 

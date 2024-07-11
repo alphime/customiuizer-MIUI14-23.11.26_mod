@@ -166,7 +166,8 @@
 		android:title="@string/system_clock_time_format_title"
 		android:entryValues="@array/statusbar_clock_24hour_val"
 		android:entries="@array/statusbar_clock_24hour"
-		android:defaultValue="0"/>
+		android:defaultValue="0"
+		miuizer:valueAsSummary="true"/>
 
 	<name.monwf.customiuizer.prefs.CheckBoxPreferenceEx
 		android:key="pref_key_system_statusbar_clock_show_ampm"

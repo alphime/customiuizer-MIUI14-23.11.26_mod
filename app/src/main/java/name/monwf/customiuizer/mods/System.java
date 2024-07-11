@@ -1096,13 +1096,13 @@ public class System {
                         timeFmt = customFormat;
                     } else {
                         boolean showSeconds = MainModule.mPrefs.getBoolean("system_statusbar_clock_show_seconds");
-                        int type24 = 0;
+                        short type24 = 0;
                         try {
-                            type24 = MainModule.mPrefs.getStringAsInt("system_statusbar_clock_24hour_format", 0);
+                            type24 = (short) MainModule.mPrefs.getStringAsInt("system_statusbar_clock_24hour_format", 0);
                         } catch (Throwable e) {
                             //
                         }
-                        boolean showAmpm = MainModule.mPrefs.getBoolean("system_statusbar_clock_show_ampm");
+                        boolean showAmpm = MainModule.mPrefs.getBoolean("system_statusbar_clock_show_ampm") || type24 == 0;
                         boolean hourIn2d = MainModule.mPrefs.getBoolean("system_statusbar_clock_leadingzero");
                         String fmt;
                         if (showAmpm) {
@@ -1124,15 +1124,17 @@ public class System {
                                 hourStr = "H";
                                 break;
                             default: {
-                                hourStr = getIs24(clock) ? "H" : "h";;          // default
-                                log("ClassNotFound MiuiStatusBarClockController.getIs24");
+                                try {
+                                    hourStr = getIs24(clock) ? "H" : "h";
+                                    ;          // default
+                                } catch (Exception e) {
+                                    throw new RuntimeException("ClassNotFound MiuiStatusBarClockController.getIs24", e);
+                                }
                             }
                         }
                         if (hourIn2d) {
                             hourStr = hourStr + hourStr;
                         }
-                        if (hourStr.charAt(0) == 'h')
-                            hourStr = "aa" + hourStr;
                         timeFmt = timeFmt.replaceFirst("h+:", hourStr + ":");
                     }
                 }
