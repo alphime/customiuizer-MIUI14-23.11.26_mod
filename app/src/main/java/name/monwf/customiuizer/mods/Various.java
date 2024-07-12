@@ -3,6 +3,7 @@ package name.monwf.customiuizer.mods;
 import static name.monwf.customiuizer.mods.GlobalActions.ACTION_PREFIX;
 import static name.monwf.customiuizer.mods.utils.XposedHelpers.findClass;
 import static name.monwf.customiuizer.mods.utils.XposedHelpers.findClassIfExists;
+import static name.monwf.customiuizer.mods.utils.XposedHelpers.log;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -71,6 +72,7 @@ import io.github.libxposed.api.XposedInterface.AfterHookCallback;
 import io.github.libxposed.api.XposedInterface.BeforeHookCallback;
 import io.github.libxposed.api.XposedModuleInterface.PackageLoadedParam;
 import io.github.libxposed.api.XposedModuleInterface.SystemServerLoadedParam;
+import miui.os.Build;
 import miui.process.ForegroundInfo;
 import miui.process.ProcessManager;
 import name.monwf.customiuizer.MainModule;
@@ -1147,6 +1149,20 @@ public class Various {
 			}
 		});
 	}
+
+
+    /**
+     * 设置手机管家是否强制国内版本
+     */
+    public static void HookSecurityInternationalBuild() {
+        try {
+            XposedHelpers.setStaticBooleanField(XposedHelpers.findClass("miui.os.Build", null),
+                    "IS_INTERNATIONAL_BUILD", false);
+        } catch (Exception e) {
+            log(e);
+        }
+    }
+
 
 //	public static void LargeCallerPhotoHook(PackageLoadedParam lpparam) {
 //		ModuleHelper.findAndHookMethod("com.android.incallui.CallCardFragment", lpparam.getClassLoader(), "setCallCardImage", Drawable.class, boolean.class, new MethodHook() {

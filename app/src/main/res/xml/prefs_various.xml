@@ -107,6 +107,10 @@
 		miuizer:indentLevel="1"
 		android:defaultValue="false" />
 
+	<name.monwf.customiuizer.prefs.CheckBoxPreferenceEx
+		android:key="pref_key_various_securitycenter_force_cn"
+		android:title="@string/various_force_version_cn" />
+
 	<name.monwf.customiuizer.prefs.PreferenceCategoryEx
 		android:title="@string/calls"/>
 

@@ -8,6 +8,7 @@ import android.provider.Settings;
 
 import androidx.preference.Preference;
 
+import miui.os.Build;
 import name.monwf.customiuizer.R;
 import name.monwf.customiuizer.SubFragment;
 import name.monwf.customiuizer.prefs.CheckBoxPreferenceEx;
@@ -36,6 +37,11 @@ public class Various extends SubFragment {
 				return true;
 			}
 		});
+
+		if (!Build.IS_INTERNATIONAL_BUILD) {
+			findPreference("pref_key_various_securitycenter_force_cn").setVisible(false);;
+		}
+
 
 		CheckBoxPreferenceEx untrustedTouchPref = findPreference("pref_key_various_allow_untrusted_touch");
 		untrustedTouchPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

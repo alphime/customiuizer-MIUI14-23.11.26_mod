@@ -4873,6 +4873,9 @@ public class System {
         ModuleHelper.findAndHookMethod("com.android.server.locksettings.LockSettingsStrongAuth", lpparam.getClassLoader(), "rescheduleStrongAuthTimeoutAlarm", long.class, int.class, HookerClassHelper.DO_NOTHING);
     }
 
+    /**
+     * 在移动网络设置中强制显示WIFI通话及运营商视频通话功能
+     */
     public static void HookWifiCallingPerferenceController(PackageLoadedParam lpparam) {
         ModuleHelper.findAndHookMethod("com.android.settings.network.telephony.WifiCallingPreferenceController", lpparam.getClassLoader(), "getAvailabilityStatus", int.class, new MethodHook(){
             @Override

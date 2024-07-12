@@ -1,21 +1,15 @@
 package name.monwf.customiuizer;
 
 import android.app.Application;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -546,6 +540,9 @@ public class MainModule extends XposedModule {
             }
             if (mPrefs.getBoolean("various_privacyapps_column_nums4")) {
                 Various.PrivacyAppsLayoutHook(lpparam);
+            }
+            if (mPrefs.getBoolean("various_securitycenter_force_cn")) {
+                Various.HookSecurityInternationalBuild();
             }
         }
 

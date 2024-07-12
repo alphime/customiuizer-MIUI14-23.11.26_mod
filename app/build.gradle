@@ -29,7 +29,7 @@ def sPassword = keystoreProperties['storePassword']
 def kAlias = keystoreProperties['keyAlias']
 def kPassword = keystoreProperties['keyPassword']
 def lastVersion = 90
-def lastVersionName = "24.7.11"
+def lastVersionName = "24.7.12"
 
 if (gradle.startParameter.taskNames.contains(":app:assembleDevelop")) {
     lastVersion += 1
