@@ -59,6 +59,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -720,6 +721,8 @@ public class Various {
 	}
 
 	public static void ShowTempInBatteryHook(PackageLoadedParam lpparam) {
+		if (newBatteryTemperature(lpparam))
+			return;
 		Class<?> InterceptBaseFragmentClass = XposedHelpers.findClass("com.miui.powercenter.BatteryFragment", lpparam.getClassLoader());
 		Class<?>[] innerClasses = InterceptBaseFragmentClass.getDeclaredClasses();
 		Class<?> HandlerClass = null;
@@ -772,6 +775,30 @@ public class Various {
 			});
 		}
 	}
+
+	private static boolean newBatteryTemperature(PackageLoadedParam lpparam) {
+		Class<?> smartChargeFragmentClazz = findClass("com.miui.powercenter.nightcharge.SmartChargeFragment", lpparam.getClassLoader());
+		Method method = null;
+		for (Method m2 : smartChargeFragmentClazz.getDeclaredMethods()) {
+			if (m2.getReturnType() == String.class && Modifier.isStatic(m2.getModifiers()) && m2.getParameterCount() == 1 && Context.class.isAssignableFrom(m2.getParameterTypes()[0])) {
+				method = m2;
+				break;
+			}
+		}
+		if (method != null) {
+			XposedHelpers.doHookMethod(method, new MethodHook() {
+				@Override
+				protected void before(BeforeHookCallback param) throws Throwable {
+					Context ctx = (Context) param.getArgs()[0];
+					int temp = ctx.registerReceiver(null, new IntentFilter("android.intent.action.BATTERY_CHANGED")).getIntExtra("temperature", 0) / 10;
+					param.returnAndSkip(temp + "℃");
+				}
+			});
+			return true;
+		}
+		return false;
+	}
+
 	public static void DisableDockSuggestHook(PackageLoadedParam lpparam) {
 		MethodHook clearHook = new MethodHook() {
 			@Override
