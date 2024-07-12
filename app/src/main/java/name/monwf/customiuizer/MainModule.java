@@ -542,7 +542,7 @@ public class MainModule extends XposedModule {
                 Various.PrivacyAppsLayoutHook(lpparam);
             }
             if (mPrefs.getBoolean("various_securitycenter_force_cn")) {
-                Various.HookSecurityInternationalBuild();
+                Various.HookSecurityInternationalBuild(lpparam);
             }
         }
 

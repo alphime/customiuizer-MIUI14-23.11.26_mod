@@ -64,6 +64,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
@@ -1154,14 +1155,21 @@ public class Various {
     /**
      * 设置手机管家是否强制国内版本
      */
-    public static void HookSecurityInternationalBuild() {
-        try {
+    public static void HookSecurityInternationalBuild(PackageLoadedParam lpparam) {
+		try {
             XposedHelpers.setStaticBooleanField(XposedHelpers.findClass("miui.os.Build", null),
                     "IS_INTERNATIONAL_BUILD", false);
         } catch (Exception e) {
             log(e);
         }
-    }
+		// 去除网络助手广告
+		try {
+			ModuleHelper.findAndHookMethod("com.miui.networkassistant.ui.NetworkAssistantActivity", lpparam.getClassLoader(),
+					"updateFunctionItems", HookerClassHelper.DO_NOTHING);
+		} catch (Exception e) {
+			log(e);
+		}
+	}
 
 
 //	public static void LargeCallerPhotoHook(PackageLoadedParam lpparam) {
